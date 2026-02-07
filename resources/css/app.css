@@ -170,3 +170,22 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* Card flip animation for Joker reveal */
+.card-flip-perspective {
+    perspective: 1000px;
+}
+.card-flip-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.7s;
+}
+.card-flip-inner.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+.card-flip-front,
+.card-flip-back {
+    backface-visibility: hidden;
+}
+.card-flip-back {
+    transform: rotateY(180deg);
+}

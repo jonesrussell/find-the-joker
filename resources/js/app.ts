@@ -2,6 +2,8 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
+import FlashToaster from '@/components/FlashToaster.vue';
+import { Toaster } from '@/components/ui/sonner';
 import '../css/app.css';
 import { initializeTheme } from './composables/useAppearance';
 
@@ -15,7 +17,9 @@ createInertiaApp({
             import.meta.glob<DefineComponent>('./pages/**/*.vue'),
         ),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        createApp({
+            render: () => h('div', [h(App, props), h(Toaster), h(FlashToaster)]),
+        })
             .use(plugin)
             .mount(el);
     },
